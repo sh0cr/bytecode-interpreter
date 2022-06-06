@@ -1,7 +1,7 @@
 use std::env;
 
 struct Element {
-    val: i32,
+    val: f64,
     name: Option<String>,
 }
 
@@ -20,7 +20,7 @@ impl ByteCode {
                 match command[0] {
                     "LOAD_VAL" => {
                         let e = Element {
-                            val: command[1].parse::<i32>().unwrap(),
+                            val: command[1].parse::<f64>().unwrap(),
                             name: None,
                         };
                         self.stack.push(e);
@@ -44,7 +44,7 @@ impl ByteCode {
             1 => {
                 let a = self.stack.pop().unwrap().val;
                 let b = self.stack.pop().unwrap().val;
-                let mut res: Option<i32> = None;
+                let mut res: Option<f64> = None;
                 match command[0] {
                     "ADD" => {
                         res = Some(a + b);
